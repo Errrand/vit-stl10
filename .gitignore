@@ -1,0 +1,27 @@
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Downloaded datasets
+data/
+
+# Training artifacts
+outputs/*
+!outputs/
+!outputs/__init__.py
+checkpoints/
+runs/
+*.pt
+*.pth
+*.ckpt
+
+# Local environment
+.env
+.venv/
+venv/
+
+# Logs and system files
+*.log
+.DS_Store
+Thumbs.db
