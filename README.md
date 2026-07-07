@@ -4,7 +4,20 @@
 本项目是一个基于vit-tiny的图像分类学习项目，主要用于深度模型的训练、测试和结果保存流程
 实现了attention map
 ## 2.项目结构
-
+D:.
+│  .gitignore
+│  main.py
+│  README.md
+│  
+├─data
+│              
+├─datasets
+│  │  data.py
+├─engine
+│  │  train.py
+├─model
+│  │  vit_tiny.py    
+└─outputs
 ## 3.环境配置
 
 ## 4.训练模型

@@ -22,7 +22,8 @@ def main():
         lr=3e-4,
         weight_decay=0.05
     )
-    epochs=200
+    epochs=100
+    best_val_acc=0.0
     for epoch in range(epochs):
         train_loss,train_acc=train_one_epoch(model,train_loader,criterion,optimizer,device)
         val_loss,val_acc=evaluate(model,val_loader,criterion,device)
@@ -31,6 +32,9 @@ def main():
             f"Train Loss:{train_loss:.4f},Train Acc:{train_acc:.4f} "
             f"Eval Loss:{val_loss:.4f},Eval Acc:{val_acc:.4f}"
         )
+        if val_acc > best_val_acc:
+            best_val_acc = val_acc
+            torch.save(model.state_dict(), "outputs/best_model.pth")
     test_loss,test_acc=evaluate(model,test_loader,criterion,device)
     print(f"Test Loss:{test_loss:.4f},Test Acc:{test_acc:.4f}")
 if __name__=="__main__":

@@ -52,6 +52,7 @@ class Attention(nn.Module):
         v=v.reshape(B,N,self.heads,self.dim_head).permute(0,2,1,3)
 
         #3.计算注意力分数,[B,heads,N,dim_head]*[B,heads,dim_head,N]=[B,heads,N,N]
+        #B:batch size,heads:多头注意力数量,N:token数量,N:每个token对其他token的注意力
         #每个query和所有key做点积，得到相似度矩阵，第i个query对第j个key的相似度
         attn=torch.matmul(q,k.transpose(-2,-1))*self.scale
 
@@ -169,5 +170,5 @@ class Vit_Tiny(nn.Module):
         #6.取CLS token的输出用于分类
         x=self.norm(x[:,0]) #[B,D],x[:, 0] 会少一维
         x=self.head(x) #[B,10]
-        return x 
+        return x
     
