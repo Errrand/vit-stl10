@@ -31,7 +31,7 @@ def evaluate(model,data_loader,criterion,device):
             total+=labels.size(0)
     return total_loss/total,correct/total
 
-def train_one_epoch(model,data_loader,criterion,optimizer,device):
+def train_one_epoch(model,data_loader,criterion,optimizer,scheduler,device):
     model.train()
     total_loss=0.0
     correct=0
@@ -43,6 +43,7 @@ def train_one_epoch(model,data_loader,criterion,optimizer,device):
         loss=criterion(outputs,labels)
         loss.backward()
         optimizer.step()
+        scheduler.step()
         total_loss+=loss.item()*images.size(0)
         preds=outputs.argmax(dim=1)
         correct+=(preds==labels).sum().item()
