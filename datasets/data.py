@@ -14,17 +14,18 @@ def get_transforms():
     train_transform=transforms.Compose([
         transforms.RandomResizedCrop(
             size=96,
-            scale=(0.8,1.0)
+            scale=(0.6,1.0)
         ),
         transforms.RandomHorizontalFlip(p=0.5),
         transforms.ColorJitter(
-            brightness=0.2,
-            contrast=0.2,
-            saturation=0.2,
-            hue=0.05
+            brightness=0.4,
+            contrast=0.4,
+            saturation=0.4,
+            hue=0.1
         ),
         transforms.ToTensor(),
-        transforms.Normalize(STL10_MEAN,STL10_STD)
+        transforms.Normalize(STL10_MEAN,STL10_STD),
+        transforms.RandomErasing(p=0.25)
     ])
     val_transform=transforms.Compose([
         transforms.Resize((96,96)),

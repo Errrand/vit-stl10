@@ -19,10 +19,10 @@ def main():
     device=torch.device("cuda" if torch.cuda.is_available() else "cpu")
     train_loader,val_loader,test_loader=get_dataloaders()
     model=Vit_Tiny().to(device)
-    criterion=nn.CrossEntropyLoss()
+    criterion=nn.CrossEntropyLoss(label_smoothing=0.1)
     optimizer=optim.AdamW(
         model.parameters(),
-        lr=3e-4,
+        lr=1e-4,
         weight_decay=0.05
     )
     epochs=200
